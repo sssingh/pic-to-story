@@ -22,7 +22,7 @@ license: mit
 
 ## App Flow
 
-<img src="https://github.com/sssingh/pic-to-story/blob/main/assets/app-design-dark.png?raw=true" width="1000" height="450"/><br><br> 
+<img src="https://github.com/sssingh/pic-to-story/blob/main/assets/app-design.png?raw=true" width="1000" height="450"/><br><br> 
 
 Text2Image model details can be found [here](https://huggingface.co/Sof22/image-caption-large-copy)
 
