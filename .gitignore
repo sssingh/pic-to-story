@@ -3,6 +3,7 @@ secrets.toml
 scratch*.ipynb
 experiments.ipynb
 venv*/
+*.excalidraw
 .vscode*
 .vscode*/
 .examples/

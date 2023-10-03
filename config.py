@@ -13,10 +13,10 @@ class AppConfig:
     db = "mydb"
     collection = "pic2story-openai-access-counter"
     key = "current_count"
-    # HF_TOKEN = os.getenv("HF_TOKEN")
-    # OPENAI_KEY = os.getenv("OPENAI_KEY")
-    # I2T_API_URL = os.getenv("I2T_API_URL")
-    # MONGO_CONN_STR = os.getenv("MONGO_CONN_STR")
+    HF_TOKEN = os.getenv("HF_TOKEN")
+    OPENAI_KEY = os.getenv("OPENAI_KEY")
+    I2T_API_URL = os.getenv("I2T_API_URL")
+    MONGO_CONN_STR = os.getenv("MONGO_CONN_STR")
 
 
 app_config = AppConfig()
