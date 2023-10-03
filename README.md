@@ -1,10 +1,10 @@
 ---
-title: Picture to Story Generator
+title: Picture to Story Generator 
 emoji: 📖
 colorFrom: yellow
 colorTo: red
 sdk: gradio
-sdk_version: 1.27.1
+sdk_version: 3.46.0
 app_file: app.py
 pinned: false
 license: mit
@@ -16,7 +16,7 @@ license: mit
 # The Storyteller  
 ***A Large Language Model Based App to Generate Stories from Pictures***
 
-<img src="https://github.com/sssingh/pic-to-story/blob/main/streamlit/assets/title.jpg?raw=true" width="1000" height="350"/><br><br> 
+<img src="https://github.com/sssingh/pic-to-story/blob/main/assets/title.jpg?raw=true" width="1000" height="350"/><br><br> 
 
 >This application employs a Text2Image model hosted by Huggingface, which is a modified adaptation of the Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation (BLIP) model. First, it generates a descriptive caption for an image. Then, it utilizes this caption to construct a prompt, which is subsequently used with OpenAI's GPT-3.5 to create engaging stories based on the provided picture. 
 
@@ -30,7 +30,7 @@ BLIP model details can be found [here](https://huggingface.co/Sof22/image-captio
 
 App UI is shown below:
 
-<img src="https://github.com/sssingh/pic-to-story/blob/main/streamlit/assets/story-teller-app.png?raw=true" width="1000" height="450"/><br><br> 
+<img src="https://github.com/sssingh/pic-to-story/blob/main/assets/story-teller-app.png?raw=true" width="1000" height="450"/><br><br> 
 
 **Dark Mode Toggle**: Activate it to switch between dark and light mode.
 **Image Selector**: Click on it to pick an image from your computer, or drag and drop an image onto it directly. Click the 'X' to clear the selection and resets the app.
@@ -43,7 +43,7 @@ App UI is shown below:
 
 The app includes pre-defined examples for your convenience, allowing you to quickly test its capabilities. Explore the examples section, choose one, and click "Generate Story" without needing to upload an image.
 
-<img src="https://github.com/sssingh/pic-to-story/blob/main/streamlit/assets/story-teller-examples.png?raw=true" width="1000" height="350"/><br><br> 
+<img src="https://github.com/sssingh/pic-to-story/blob/main/assets/story-teller-examples.png?raw=true" width="1000" height="350"/><br><br> 
 
 # Project Source
 [👉 Visit GitHub Repo](https://github.com/sssingh/pic-to-story)
