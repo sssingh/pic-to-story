@@ -18,13 +18,13 @@ license: mit
 
 <img src="https://github.com/sssingh/pic-to-story/blob/main/assets/title.jpg?raw=true" width="1000" height="350"/><br><br> 
 
->This application employs a Text2Image model hosted by Huggingface, which is a modified adaptation of the Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation (BLIP) model. First, it generates a descriptive caption for an image. Then, it utilizes this caption to construct a prompt, which is subsequently used with OpenAI's GPT-3.5 to create engaging stories based on the provided picture. 
+>This application employs a Image2Text model hosted by Huggingface, which is a modified adaptation of the Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation (BLIP) model. First, it generates a descriptive caption for an image. Then, it utilizes this caption to construct a prompt, which is subsequently used with OpenAI's GPT-3.5 to create engaging stories based on the provided picture. 
 
 ## App Flow
 
 <img src="https://github.com/sssingh/pic-to-story/blob/main/assets/app-design.png?raw=true" width="1000" height="450"/><br><br> 
 
-Text2Image model details can be found [here](https://huggingface.co/Sof22/image-caption-large-copy)
+BLIP Image2Text model details can be found [here](https://huggingface.co/Sof22/image-caption-large-copy)
 
 ## App Details 
 
