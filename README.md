@@ -20,7 +20,11 @@ license: mit
 
 >This application employs a Text2Image model hosted by Huggingface, which is a modified adaptation of the Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation (BLIP) model. First, it generates a descriptive caption for an image. Then, it utilizes this caption to construct a prompt, which is subsequently used with OpenAI's GPT-3.5 to create engaging stories based on the provided picture. 
 
-BLIP model details can be found [here](https://huggingface.co/Sof22/image-caption-large-copy)
+## App Flow
+
+<img src="https://github.com/sssingh/pic-to-story/blob/main/assets/app-design-dark?raw=true" width="1000" height="450"/><br><br> 
+
+Text2Image model details can be found [here](https://huggingface.co/Sof22/image-caption-large-copy)
 
 ## App Details 
 
@@ -32,14 +36,14 @@ App UI is shown below:
 
 <img src="https://github.com/sssingh/pic-to-story/blob/main/assets/story-teller-app.png?raw=true" width="1000" height="450"/><br><br> 
 
-**Dark Mode Toggle**: Activate it to switch between dark and light mode.
-**Image Selector**: Click on it to pick an image from your computer, or drag and drop an image onto it directly. Click the 'X' to clear the selection and resets the app.
-**Story Length (in words) Slider**: Adjust the slider to specify the desired length of the generated story.
-**Creativity Index Slider**: Modify the slider to indicate the desired level of creativity for the generated story. A range between 0.5 and 0.7 is recommended. Setting it to 1.0 results in highly creative, sometimes amusing output.
-**Generate Story Button**: Press this button to initiate the story generation process.
-**Clear Button**: Clears all settings and resets the app to its default state.
-**Story Text Area**: This is where the generated story will be displayed.
-**Example Section Expander**: Click to expand the section and access built-in examples for quick testing. Simply select an example, click "Generate Story," and no image upload will be necessary.
+**Dark Mode Toggle**: Activate it to switch between dark and light mode.  
+**Image Selector**: Click on it to pick an image from your computer, or drag and drop an image onto it directly. Click the 'X' to clear the selection and resets the app.  
+**Story Length (in words) Slider**: Adjust the slider to specify the desired length of the generated story.  
+**Creativity Index Slider**: Modify the slider to indicate the desired level of creativity for the generated story. A range between 0.5 and 0.7 is recommended. Setting it to 1.0 results in highly creative, sometimes amusing output.  
+**Generate Story Button**: Press this button to initiate the story generation process.  
+**Clear Button**: Clears all settings and resets the app to its default state.  
+**Story Text Area**: This is where the generated story will be displayed.  
+**Example Section Expander**: Click to expand the section and access built-in examples for quick testing. Simply select an example, click "Generate Story," and no image upload will be necessary.  
 
 The app includes pre-defined examples for your convenience, allowing you to quickly test its capabilities. Explore the examples section, choose one, and click "Generate Story" without needing to upload an image.
 
