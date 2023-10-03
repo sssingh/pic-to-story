@@ -1,6 +1,7 @@
 import gradio as gr
 import model
 from config import app_config
+import mongo_utils as mongo
 
 
 def clear():
@@ -29,19 +30,34 @@ def create_interface():
                 api_name=False,
             )
         with gr.Row():
-            gr.Markdown(
-                """
-                # Storyteller
-                **This app can craft captivating narratives from captivating images, 
-                potentially surpassing even Shakespearean standards. Select an image 
-                that inspires a story, choose a story length (up to 100 words), and 
-                adjust the creativity index to enhance its creative flair.**  
-                <br>
-                ***Please exercise patience, as the models employed are extensive and may
-                require a few seconds to load. If you encounter an unrelated story, 
-                it is likely still loading; wait a moment and try again.***
-                """
-            )
+            with gr.Column(scale=5):
+                gr.Markdown(
+                    """
+                    # Storyteller
+                    **This app can craft captivating narratives from captivating images, 
+                    potentially surpassing even Shakespearean standards. Select an image 
+                    that inspires a story, choose a story length (up to 100 words), and 
+                    adjust the creativity index to enhance its creative flair.**  
+                    <br>
+                    ***Please exercise patience, as the models employed are extensive and may
+                    require a few seconds to load. If you encounter an unrelated story, 
+                    it is likely still loading; wait a moment and try again.***
+                    """
+                )
+            with gr.Column(scale=2):
+                max_count = gr.Textbox(
+                    label="Max allowed OpenAI requests:",
+                    value=app_config.openai_max_access_count,
+                )
+                curr_count = gr.Textbox(
+                    label="Used up OpenAI requests:",
+                    value=app_config.openai_curr_access_count,
+                )
+                available_count = gr.Textbox(
+                    label="Available OpenAI requests:",
+                    value=app_config.openai_max_access_count
+                    - app_config.openai_curr_access_count,
+                )
         with gr.Row():
             with gr.Column():
                 image = gr.Image(
@@ -89,7 +105,7 @@ def create_interface():
         submit_button.click(
             fn=model.generate_story,
             inputs=[image, word_count, creativity],
-            outputs=[story],
+            outputs=[story, max_count, curr_count, available_count],
         )
         clear_button.click(
             fn=clear, inputs=[], outputs=[image, word_count, creativity, story]
@@ -100,5 +116,6 @@ def create_interface():
 
 
 if __name__ == "__main__":
+    mongo.fetch_curr_access_count()
     app = create_interface()
     app.launch()

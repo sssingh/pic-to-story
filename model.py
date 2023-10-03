@@ -8,6 +8,7 @@ from langchain.prompts import (
     ChatPromptTemplate,
 )
 from config import app_config
+import mongo_utils as mongo
 
 
 def __image2text(image):
@@ -51,11 +52,18 @@ def __text2story(image_desc, word_count, creativity):
 
 def generate_story(image_file, word_count, creativity):
     """Generates a story given an image"""
-    # read image as bytes array
+    # read image as bytes arrayS
     with open(image_file, "rb") as f:
         input_image = f.read()
+    # generate caption for image
     image_desc = __image2text(image=input_image)
+    # generate story from caption
     story = __text2story(
         image_desc=image_desc, word_count=word_count, creativity=creativity
     )
-    return story
+    # increment the openai access counter and compute count stats
+    mongo.increment_curr_access_count()
+    max_count = app_config.openai_max_access_count
+    curr_count = app_config.openai_curr_access_count
+    available_count = max_count - curr_count
+    return story, max_count, curr_count, available_count
