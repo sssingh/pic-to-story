@@ -30,7 +30,7 @@ BLIP Image2Text model details can be found [here](https://huggingface.co/Sof22/i
 
 * It's important to note that this sample demonstration app is hosted on the free tiers of Huggingface Spaces, which means it is functional but may exhibit slower performance.
 * Additionally, when using the app for the first time or after an extended period (more than 1 hour), you might encounter an "Internal Error" message or receive a story unrelated to the provided image. This is a normal occurrence during the model loading process. Please wait a few seconds and try again; it should function as intended.
-* Please be aware that due to cost and resource constraints, the app currently has a maximum story length limit of 100 words per request.
+* Please be aware that due to cost and resource constraints, the app currently has a maximum story length limit of 200 words per request.
 
 App UI is shown below:
 
@@ -38,6 +38,8 @@ App UI is shown below:
 
 **Dark Mode Toggle**: Activate it to switch between dark and light mode.  
 **Image Selector**: Click on it to pick an image from your computer, or drag and drop an image onto it directly. Click the 'X' to clear the selection and resets the app.  
+**Story Genre Dropdown**: Select the desired story genre from the dropdown list.  
+**Story Writing Style Dropdown**: Select the desired story writing style from the dropdown list.  
 **Story Length (in words) Slider**: Adjust the slider to specify the desired length of the generated story.  
 **Creativity Index Slider**: Modify the slider to indicate the desired level of creativity for the generated story. A range between 0.5 and 0.7 is recommended. Setting it to 1.0 results in highly creative, sometimes amusing output.  
 **Generate Story Button**: Press this button to initiate the story generation process.  

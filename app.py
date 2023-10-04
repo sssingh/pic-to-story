@@ -30,21 +30,25 @@ def create_interface():
                 api_name=False,
             )
         with gr.Row():
-            with gr.Column(scale=5):
+            with gr.Column():
                 gr.Markdown(
                     """
-                    # Storyteller
+                    # The Storyteller
                     **This app can craft captivating narratives from captivating images, 
-                    potentially surpassing even Shakespearean standards. Select an image 
-                    that inspires a story, choose a story length (up to 100 words), and 
-                    adjust the creativity index to enhance its creative flair.**  
+                    potentially surpassing even Shakespearean standards.  
                     <br>
-                    ***Please exercise patience, as the models employed are extensive and may
-                    require a few seconds to load. If you encounter an unrelated story, 
-                    it is likely still loading; wait a moment and try again.***
+                    Select an `Image` that inspires a story, choose a `Story Genre`, 
+                    `Story Writing Style`, `Story Length (up to 200 words)`, and 
+                    adjust the `Creativity Index` to enhance its creative flair. Then 
+                    hit `Generate Story` button.
+                    Alternatively, just select one the pre-configured `Examples`**  
+                    <br>
+                    ***Please exercise patience, as the models employed are extensive 
+                    and may require a few seconds to load. If you encounter an unrelated 
+                    story, it is likely still loading; wait a moment and try again.***
                     """
                 )
-            with gr.Column(scale=2):
+            with gr.Column():
                 max_count = gr.Textbox(
                     label="Max allowed OpenAI requests:",
                     value=app_config.openai_max_access_count,
@@ -63,21 +67,34 @@ def create_interface():
                 image = gr.Image(
                     type="filepath",
                 )
-                # Word Count Slider
-                word_count = gr.Slider(
-                    label="Story Length (words):",
-                    minimum=25,
-                    maximum=100,
-                    value=50,
-                    step=5,
-                )
-                creativity = gr.Slider(
-                    label="Creativity Index:",
-                    minimum=0.3,
-                    maximum=1.0,
-                    value=0.7,
-                    step=0.1,
-                )
+                with gr.Row():
+                    with gr.Column():
+                        genre = gr.Dropdown(
+                            label="Story Genre: ",
+                            value="Poetry",
+                            choices=app_config.genre,
+                        )
+                        style = gr.Dropdown(
+                            label="Story Writing Style:",
+                            value="Cinematic",
+                            choices=app_config.writing_style_list,
+                        )
+                    with gr.Column():
+                        # Word Count Slider
+                        word_count = gr.Slider(
+                            label="Story Length (words):",
+                            minimum=30,
+                            maximum=200,
+                            value=50,
+                            step=10,
+                        )
+                        creativity = gr.Slider(
+                            label="Creativity Index:",
+                            minimum=0.3,
+                            maximum=1.0,
+                            value=0.7,
+                            step=0.1,
+                        )
                 with gr.Row():
                     submit_button = gr.Button(
                         value="Generate Story", elem_classes="orange-button"
@@ -87,24 +104,56 @@ def create_interface():
                 story = gr.Textbox(
                     label="Story:",
                     placeholder="Generated story will appear here.",
-                    lines=12,
+                    lines=21,
                 )
         with gr.Row():
             with gr.Accordion("Expand for examples:", open=False):
                 gr.Examples(
                     examples=[
-                        ["assets/examples/cheetah-deer.jpg", 50, 0.5],
-                        ["assets/examples/man-child-pet-dog.jpg", 100, 0.6],
-                        ["assets/examples/man-child.jpeg", 60, 1.0],
-                        ["assets/examples/men-fighting.jpg", 50, 0.4],
-                        ["assets/examples/teacher-school.jpg", 80, 0.7],
+                        [
+                            "assets/examples/cheetah-deer.jpg",
+                            "Horror",
+                            "Narrative",
+                            80,
+                            0.5,
+                        ],
+                        [
+                            "assets/examples/man-child-pet-dog.jpg",
+                            "Fiction",
+                            "Formal",
+                            100,
+                            0.6,
+                        ],
+                        [
+                            "assets/examples/man-child.jpeg",
+                            "Children Literature",
+                            "Symbolic",
+                            120,
+                            1.0,
+                        ],
+                        [
+                            "assets/examples/men-fighting.jpg",
+                            "Comedy",
+                            "Experimental",
+                            60,
+                            0.4,
+                        ],
+                        [
+                            "assets/examples/teacher-school.jpg",
+                            "Surrealism",
+                            "Non-linear",
+                            80,
+                            0.7,
+                        ],
                     ],
-                    inputs=[image, word_count, creativity],
-                    outputs=[story],
+                    fn=model.generate_story,
+                    inputs=[image, genre, style, word_count, creativity],
+                    outputs=[story, max_count, curr_count, available_count],
+                    run_on_click=True,
                 )
         submit_button.click(
             fn=model.generate_story,
-            inputs=[image, word_count, creativity],
+            inputs=[image, genre, style, word_count, creativity],
             outputs=[story, max_count, curr_count, available_count],
         )
         clear_button.click(

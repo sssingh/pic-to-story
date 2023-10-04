@@ -22,7 +22,7 @@ def __image2text(image):
     return response
 
 
-def __text2story(image_desc, word_count, creativity):
+def __text2story(image_desc, genre, style, word_count, creativity):
     """ "Generates a short story based on image description text prompt"""
     ## chat LLM model
     story_model = ChatOpenAI(
@@ -32,13 +32,15 @@ def __text2story(image_desc, word_count, creativity):
     )
     ## chat message prompts
     sys_prompt = PromptTemplate(
-        template="You are an expert storyteller that can generate"
-        + " imaginative {word_count} words long story from the input text",
-        input_variables=["word_count"],
+        template="""You are an expert story writer, write a maximum of {word_count} 
+        words long story in {genre} genre in {style} writing style, based on the user 
+        provided story-context.
+        """,
+        input_variables=["word_count", "genre", "style"],
     )
     system_msg_prompt = SystemMessagePromptTemplate(prompt=sys_prompt)
     human_prompt = PromptTemplate(
-        template="{image_desc}", input_variables=["image_desc"]
+        template="story-context: {context}", input_variables=["context"]
     )
     human_msg_prompt = HumanMessagePromptTemplate(prompt=human_prompt)
     chat_prompt = ChatPromptTemplate.from_messages(
@@ -46,11 +48,13 @@ def __text2story(image_desc, word_count, creativity):
     )
     ## LLM chain
     story_chain = LLMChain(llm=story_model, prompt=chat_prompt)
-    response = story_chain.run(image_desc=image_desc, word_count=word_count)
+    response = story_chain.run(
+        genre=genre, style=style, word_count=word_count, context=image_desc
+    )
     return response
 
 
-def generate_story(image_file, word_count, creativity):
+def generate_story(image_file, genre, style, word_count, creativity):
     """Generates a story given an image"""
     # read image as bytes arrayS
     with open(image_file, "rb") as f:
@@ -59,7 +63,11 @@ def generate_story(image_file, word_count, creativity):
     image_desc = __image2text(image=input_image)
     # generate story from caption
     story = __text2story(
-        image_desc=image_desc, word_count=word_count, creativity=creativity
+        image_desc=image_desc,
+        genre=genre,
+        style=style,
+        word_count=word_count,
+        creativity=creativity,
     )
     # increment the openai access counter and compute count stats
     mongo.increment_curr_access_count()

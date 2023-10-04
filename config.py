@@ -17,6 +17,41 @@ class AppConfig:
     OPENAI_KEY = os.getenv("OPENAI_KEY")
     I2T_API_URL = os.getenv("I2T_API_URL")
     MONGO_CONN_STR = os.getenv("MONGO_CONN_STR")
+    genre_list = genre = [
+        "Adventure",
+        "Children Literature",
+        "Comedy",
+        "Drama",
+        "Fantasy",
+        "Fiction",
+        "Horror",
+        "Mystery",
+        "Non-fiction",
+        "Poetry",
+        "Romance",
+        "Satire",
+        "Surrealism",
+        "Urban Fantasy",
+    ]
+    writing_style_list = [
+        "Cinematic",
+        "Conversational",
+        "Descriptive",
+        "Experimental",
+        "First-Person",
+        "Formal",
+        "Informal",
+        "Metaphorical",
+        "Minimalist",
+        "Narrative",
+        "Non-linear",
+        "Objective",
+        "Sensory",
+        "Stream of Consciousness",
+        "Symbolic",
+        "Third-Person Limited",
+        "Third-Person Omniscient",
+    ]
 
 
 app_config = AppConfig()
