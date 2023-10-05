@@ -52,12 +52,6 @@ class AppConfig:
         "Third-Person Limited",
         "Third-Person Omniscient",
     ]
-    HF_TOKEN = "Bearer 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"
-    OPENAI_KEY = "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"
-    I2T_API_URL = (
-        "https://api-inference.huggingface.co/models/Sof22/image-caption-large-copy"
-    )
-    MONGO_CONN_STR = "mongodb+srv://sssingh:Topsycret1@cluster0.fcwxggj.mongodb.net/"
 
 
 app_config = AppConfig()
