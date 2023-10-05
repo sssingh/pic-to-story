@@ -9,25 +9,31 @@ def clear():
 
 
 def create_interface():
+    js_enable_darkmode = """() => 
+    {
+        document.querySelector('body').classList.add('dark');
+    }"""
+    js_toggle_darkmode = """() => 
+    {
+        if (document.querySelectorAll('.dark').length) {
+            document.querySelector('body').classList.remove('dark');
+        } else {
+            document.querySelector('body').classList.add('dark');
+        }
+    }"""
+
     with gr.Blocks(
         title=app_config.title, theme=app_config.theme, css=app_config.css
     ) as app:
-        # Dark mode toggle functionality
+        # enable darkmode
+        app.load(fn=None, inputs=None, outputs=None, _js=js_enable_darkmode)
         with gr.Row():
-            darkmode_checkbox = gr.Checkbox(label="Dark Mode", value=False)
+            darkmode_checkbox = gr.Checkbox(
+                label="Dark Mode", value=True, interactive=True
+            )
+            # toggle darkmode on/off when checkbox is checked/unchecked
             darkmode_checkbox.change(
-                None,
-                None,
-                None,
-                _js="""() => {
-              if (document.querySelectorAll('.dark').length) {
-                document.querySelector('body').classList.remove('dark');
-              } else {
-                document.querySelector('body').classList.add('dark');
-              }
-            }
-            """,
-                api_name=False,
+                None, None, None, _js=js_toggle_darkmode, api_name=False
             )
         with gr.Row():
             with gr.Column():
