@@ -5,3 +5,7 @@
 .gray-button {
   background-color: #5e6061 !important;
 }
+
+footer {
+  visibility: hidden;
+}
