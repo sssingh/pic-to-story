@@ -50,7 +50,7 @@ def create_interface():
                     Alternatively, just select one the pre-configured `Examples`**  
                     <br>
                     Visit the [project's repo](https://github.com/sssingh/pic-to-story)  
-                    <br?
+                    <br>
                     ***Please exercise patience, as the models employed are extensive 
                     and may require a few seconds to load. If you encounter an unrelated 
                     story, it is likely still loading; wait a moment and try again.***
